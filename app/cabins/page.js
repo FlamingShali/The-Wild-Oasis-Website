@@ -1,3 +1,8 @@
+import Navigation from "../components/navigation";
+
 export default function Page() {
-  return <h1>Cabins Page</h1>;
+  return <div>
+    <Navigation />
+    <h1>Cabins Page</h1>;
+    </div>
 }
