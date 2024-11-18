@@ -1,6 +1,6 @@
-import SubmitButton from "@/app/_components/SubmitButton";
 import { updateBooking } from "@/app/_lib/actions";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
+import SubmitButton from "@/app/_components/SubmitButton";
 
 export default async function Page({ params }) {
   const { bookingId } = params;
@@ -18,7 +18,6 @@ export default async function Page({ params }) {
         className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
       >
         <input type="hidden" value={bookingId} name="bookingId" />
-
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -44,15 +43,15 @@ export default async function Page({ params }) {
             Anything we should know about your stay?
           </label>
           <textarea
-            name="observations"
             defaultValue={observations}
+            name="observations"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
         </div>
 
         <div className="flex justify-end items-center gap-6">
           <SubmitButton pendingLabel="Updating...">
-            Update reservation
+            Update Reservation
           </SubmitButton>
         </div>
       </form>
