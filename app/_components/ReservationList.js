@@ -1,11 +1,9 @@
 "use client";
-
-import ReservationCard from "./ReservationCard";
-import { deleteBooking } from "../_lib/actions";
-
 import { useOptimistic } from "react";
+import ReservationCard from "./ReservationCard";
+import { deleteReservation } from "../_lib/actions";
 
-function ReservationList({ bookings }) {
+const ReservationList = ({ bookings }) => {
   const [optimisticBookings, optimisticDelete] = useOptimistic(
     bookings,
     (curBookings, bookingId) => {
@@ -15,7 +13,7 @@ function ReservationList({ bookings }) {
 
   async function handleDelete(bookingId) {
     optimisticDelete(bookingId);
-    await deleteBooking(bookingId);
+    await deleteReservation(bookingId);
   }
 
   return (
@@ -29,6 +27,6 @@ function ReservationList({ bookings }) {
       ))}
     </ul>
   );
-}
+};
 
 export default ReservationList;
