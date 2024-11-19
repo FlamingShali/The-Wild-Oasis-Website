@@ -1,6 +1,6 @@
+import { notFound } from "next/navigation";
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
-import { notFound } from "next/navigation";
 
 /////////////
 // GET
@@ -13,7 +13,7 @@ export async function getCabin(id) {
     .single();
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 1000));
+  // await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -43,6 +43,7 @@ export const getCabins = async function () {
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("name");
 
+  // For testing
   // await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
@@ -131,6 +132,8 @@ export async function getBookedDatesByCabinId(cabinId) {
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
+  // await new Promise((res) => setTimeout(res, 5000));
+
   if (error) {
     console.error(error);
     throw new Error("Settings could not be loaded");
@@ -164,21 +167,20 @@ export async function createGuest(newGuest) {
 
   return data;
 }
+// export async function createBooking(newBooking) {
+//   const { data, error } = await supabase
+//     .from("bookings")
+//     .insert([newBooking])
+//     // So that the newly created object gets returned!
+//     .select()
+//     .single();
 
-export async function createBooking(newBooking) {
-  const { data, error } = await supabase
-    .from("bookings")
-    .insert([newBooking])
-    // So that the newly created object gets returned!
-    .select()
-    .single();
+//   if (error) {
+//     throw new Error("Booking could not be created");
+//   }
 
-  if (error) {
-    throw new Error("Booking could not be created");
-  }
-
-  return data;
-}
+//   return data;
+// }
 
 /////////////
 // UPDATE
